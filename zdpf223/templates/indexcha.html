@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<style>
+    #zhubiaoge
+    /* Appearance */
+    #zhubiaoge { font-family: sans-serif; }
+    #zhubiaoge {border-collapse: collapse; }
+    #zhubiaoge td, th { padding: 6px; }
+    #zhubiaoge th { background: #333; color: white; }
+    #zhubiaoge tbody tr:nth-child(odd) { background: #dfdfdf; }
+    #zhubiaoge { border: 1px solid red; }
+    
+    /* Scrollability of table */
+    #zhubiaoge { width: 750px; } /* fixed width table */
+    #zhubiaoge thead tr { display: block; } /* makes it sizeable */
+    #zhubiaoge tbody { 
+      display: block; /* makes it sizeable */
+      height: 170px; /* height of scrollable area */
+      overflow: auto; /* scroll rather than overflow */
+      width: 750px; /* fill the box */
+    }
+    
+  </style>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>焦作车辆段检查组发现问题查询</title>
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="static/css/Article-Clean.css">
+    <link rel="stylesheet" href="static/css/styles.css">
+    <script src="static/js/sorttable.js"></script>
+    <script>
+        
+                               
+    function ShowLayer(id){   
+        var x={{chaxunzidian|tojson}};
+        var dangqian=x[parseInt(id)]
+        console.log(dangqian[3])
+        var liulan='<table border="0" cellpadding="5" cellspacing="0" width="327"><td width="200"><tr><td>\
+                  <div style="width:700px; overflow:auto;overflow-x:hidden;"><table border="0" width="100%">\
+                <tr><td style="font-family:仿宋; font-weight:bold;"><table id="CheckBoxList2" border="0"><tr>\
+            <td><span MainValue="JLXXB" style="display:block;width:200px;float:left"><label\ style="width:45px;margin-top:7px;">站号：</label>\
+            <label style="width:80px;">'+dangqian[0]+'</label></span></td><td><span\ MainValue="JLXXBLYS" style="display:block;width:200px;float:left"><label style="width:45px;">部门：</label>\
+            <label style="width:100px;">'+dangqian[31]+'</label></span></td></tr><tr><td><span MainValue="JLXXBLZS"\ style="display:block;width:200px;float:left"><label style="width:45px;">地点：</label>\
+            <label style="width:100px;">'+dangqian[31]+'</label></span></td><td><span MainValue="JLXXBGHX" style="display:block;width:200px;float:left">\
+            <label style="width:45px;margin-left:1px;">姓名：</label><label style="width:135px;margin-left:1px;">'+dangqian[1]+'</label></span></td></tr><tr><td>\
+            <span MainValue="JLXXBLZS" style="display:block;width:200px;float:left"><label style="width:45px;">职务：</label>\
+            <label style="width:88px;">'+dangqian[32]+'</label></span></td><td><span MainValue="JLXXBGHX" style=\"display:block;width:200px;float:left">\
+            <label style="width:45px;margin-left:1px;">日期：</label><label style="width:135px;margin-left:1px;">'+dangqian[2]+'</label></span></td></tr><tr><td>\
+            <span MainValue="JLXXBYPS" style="display:block;width:200px;float:left"><label style="width:45px;margin-left:0px;margin-bottom:7px;">开始：</label>\
+            <label style="width:75px;margin-left:0px;margin-bottom:7px;">'+dangqian[3]+'</label></span></td><td><span MainValue="JLXXBXJA" style="display:block;width:200px;float:left">\
+            <label style="width:45px;margin-left:0px;">结束：</label><label style="width:75px;margin-left:0px;">'+dangqian[4]+'</label></span></td></tr>'
+        for(i=1;i<6;i++){
+            if (dangqian[5*i]){
+                liulan+='<tr><td><span MainValue="JLXXBYPS" style="display:block;width:400px;float:left"><label style="width:45px;margin:7px;margin-right:5px;margin-left:0px;margin-top:0px;margin-bottom:0px;">序号'+i+'</label></span></td></tr><tr><td>\
+            <span MainValue="JLXXBLZS" style="display:block;width:200px;float:left"><label style="width:45px;">性质：</label>\
+            <label style="width:88px;">'+dangqian[5*i]+'</label></span></td><td><span MainValue="JLXXBGHX" style="display:block;width:200px;float:left">\
+            <label style="width:45px;margin-left:1px;">类别：</label><label style="width:135px;margin-left:1px;">'+dangqian[5*i+1]+'</label></span></td></tr><tr><td>\
+            <span MainValue="JLXXBYPS" style="display:block;width:400px;float:left">\
+            <label style="width:45px;margin:7px;margin-right:5px;margin-left:0px;margin-top:0px;margin-bottom:0px;">问题：</label>\
+            <label style="width:500px;margin:7px;margin-right:5px;margin-left:0px;margin-top:0px;margin-bottom:0px;">'+dangqian[5*i+2]+'</label></span></td></tr><tr>\
+        <td><span MainValue="JLXXBYPS" style="display:block;width:400px;float:left">\
+        <label style="width:45px;margin:7px;margin-right:5px;margin-left:0px;margin-top:0px;margin-bottom:0px;">整改：</label>\
+        <label style="width:500px;margin:7px;margin-right:5px;margin-left:0px;margin-top:0px;margin-bottom:0px;">'+dangqian[5*i+3]+'</label></span></td></tr><tr>\
+        <td><div MainValue="JLXXBYPS" style="display:block;width:400px;float:left">'
+                if (dangqian[5*i+4]){
+                    liulan+='<label style="width:45px;margin:7px;margin-right:0px;margin-left:0px;margin-top:0px;margin-bottom:0px;">图片:</label></td></tr><tr><td>\
+        <img src="'+dangqian[5*i+4]+'" style="width:150px;height:200px;"></div></td></tr>'
+                }
+            
+        }
+            
+        }   
+        liulan+='</table></td></tr></table></div></td></tr><tr><td style="text-align: center">\
+        <input id="Button3" type="button" value="关闭" onclick="HideLayer(\'BMLayer\')" /></td></tr></table>'
+                
+        
+        
+        document.getElementById("BMLayer").innerHTML=liulan;
+        var dl=document.getElementById("BMLayer");
+          //alert(dl.id);
+        if (dl) dl.style.display="none";
+        
+        document.getElementById("BMLayer").style.display = "";
+    }
+
+    function HideLayer(id)
+    {
+        document.getElementById(id).style.display ="none";
+        //var dl=document.getElementById("dl_grpman");
+        //if (dl) dl.style.display="";
+        
+    }
+    window.onload=xianshixuanze
+
+    function tiaojiantongguo(dangqian){
+        var tiaojian=(document.getElementById("rq").value=='')||(dangqian[2]==document.getElementById("rq").value)
+        return tiaojian
+    }
+    function tiaojiantongguo2(dangqian,tiaomu){
+        var tiaojian=(document.getElementById("bm").value=='0')||(dangqian[31]=={{zdl|tojson}}[document.getElementById("bm").value])
+        return tiaojian
+    }
+    function tiaojiantongguo3(dangqian){
+        var tiaojian=(document.getElementById("zd").value=='0')||({{zhandianzidian|tojson}}[dangqian[0]]=={{zhandianzidian2|tojson}}[{{zdl|tojson}}[document.getElementById("bm").value]][document.getElementById("zd").value-1])
+        return tiaojian
+    }
+    function tiaojiantongguo4(dangqian){
+        var tiaojian=(document.getElementById("xm").value=='100')||(dangqian[1]=={{renyuanxiang|tojson}}[document.getElementById("xm").value-1])
+        return tiaojian
+    }
+    function xianshixuanze(){
+        var zhuxianbiao=new Array();
+        var x={{chaxunzidian|tojson}};
+        var ids={{ids|tojson}}
+         
+        var xin2="";                        
+        for(m=0;m<ids.length;m++){
+            var dangqian=x[ids[m]]
+            if (tiaojiantongguo2(dangqian)&&tiaojiantongguo4(dangqian)&&tiaojiantongguo3(dangqian)&&tiaojiantongguo(dangqian)){
+                zhuxianbiao.push(dangqian)
+                xin2+=("<tr id='"+ids[m]+"' onclick=\"ShowLayer(this.id)\"><td width='150'>"+dangqian[31]+"</td><td width='150'>"+({{zhandianzidian|tojson}}[dangqian[0]])+"</td><td width='150'>"+dangqian[1]+"</td><td width='150'>"+dangqian[2]+"</td><td width='150'>"+dangqian[30]+"</td></tr>");
+            }
+  
+            
+            
+            }
+            console.log(zhuxianbiao)
+        
+        document.getElementById("zhubiaogebody").innerHTML=xin2;
+    }
+    
+    </script>
+</head>
+
+<body>
+
+    <div class="article-clean">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="intro">
+                        <h1 class="text-center">焦作车辆段检查组发现问题查询</h1>
+                    </div>
+                    <div class="text"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function xzbm(kk){
+            var x={{zhandianzidian2|tojson}};
+            var xin1="<optgroup label='选择站点'><option value='0' selected=''></option>";  
+            var z1={{zdl|tojson}}
+            var xu=document.getElementById("bm").value
+            zdlx=x[z1[xu]]                      
+            for(m=0;m<zdlx.length;m++){
+                
+                xin1+=("<option value='"+(m+1)+"'>"+zdlx[m]+"</option>");
+                
+                }
+            xin1+="</optgroup>";
+            document.getElementById("zd").innerHTML=xin1;
+            xianshixuanze()     
+            }
+        function xzxm(kk){
+            xianshixuanze()     
+            }   
+        function xzzd(kk){
+            xianshixuanze()     
+            }   
+        function xzrq(kk){
+            xianshixuanze()     
+            }   
+            
+    </script>
+    <div class="col-md-12"><span class="label label-default" style="background-color:#0000ff;">部门</span><select id="bm" name="bmn" onchange="xzbm(this.value)"><optgroup label="选择部门">
+    
+    {%for i in range(zdl|length)%}
+    <option value="{{i}}">{{zdl[i]}}</option>
+    {%endfor%}
+    </optgroup></select>
+        <span
+            class="label label-default" style="background-color:#0000ff;margin-left:10px;">站点</span><select id="zd" name="zdn" onchange="xzzd(this.value)"><optgroup label="选择站点">
+            <option value="0" selected=""></option>
+            {%for i in range(1,(ddl|length)+1)%}
+                <option value="{{i}}">{{ddl[i-1]}}</option>
+            {%endfor%}
+            </optgroup></select><span class="label label-default"
+                style="background-color:#0000ff;margin-left:10px;">姓名</span><select id="xm" name="xmn" onchange="xzxm(this.value)"><optgroup label="选择姓名">
+                <option value="100" selected="">
+                {%for i in range(renyuanxiang|length-1)%}
+                    <option value="{{i+1}}">{{renyuanxiang[i]}}</option>
+                {%endfor%}
+                </optgroup></select>
+                </optgroup></select>
+            <span
+                class="label label-default" style="background-color:#0000ff;margin-left:10px;">日期</span><input type="date" id="rq" name="rqn" onchange="xzrq(this.value)" style="width:100px;margin-right:0px;height:20px;padding-left:0px;font-size:10px;"></div>
+    <div
+        class="col-md-12">
+        <div>
+            <table class="sortable" id="zhubiaoge" rules=cols frame=hsides style="table-layout:fixed;word-break:break-all;">
+                <thead>
+                    <tr>
+                        <!-- <th width="7">    </th> -->
+                        <th width="150" style="text-align:center;">部门</th>
+                        <th width="150" style="text-align:center;">站点</th>
+                        <th width="150" style="text-align:center;">检查人</th>
+                        <th width="150" style="text-align:center;">日期</th>
+                        <th width="150" style="text-align:center;">总评分</th>
+                        <th width="15">    </th>
+                    </tr>
+                </thead>
+                <tbody id="zhubiaogebody">
+                
+                </tbody>
+            </table>
+            
+        </div>
+        
+        </div>
+        
+        <script src="static/js/jquery.min.js"></script>
+        <script src="static/bootstrap/js/bootstrap.min.js"></script>
+
+<div id="BMLayer" style="border-right: black 1px solid; padding-right: 5px; border-top: black 1px solid;display: none;
+                                  padding-left: 5px; padding-bottom: 5px; vertical-align: top; border-left: black 1px solid;
+                                 padding-top: 0px; border-bottom: black 1px solid; position: absolute; background-color: #e2ffe5;
+                                 text-align: left;z-index:999999;">
+                                
+                             </div> 
+</body>
+
+</html>

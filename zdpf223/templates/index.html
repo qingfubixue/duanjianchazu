@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>站点评分</title>
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="static/css/Article-Clean.css">
+    <link rel="stylesheet" href="static/css/Map-Clean.css">
+    <link rel="stylesheet" href="static/css/styles.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="static/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="static/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="static/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="static/css/Simple-Slider.css">
+</head>
+
+<body>
+    <form method="post"  target="postTo" enctype="multipart/form-data">
+	<div class="col-md-12" style="padding-left:0px;padding-right:0px;height:0px;">
+        <h3 class="text-center" style="margin-top:11px;margin-bottom:50px;"><strong>焦作车辆段检查组发现问题统计</strong><br></h3>
+    </div>
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="intro">
+            <p class="text-center"> </p>
+	
+        </div>
+    </div>
+    <div class="article-clean" style="margin-top:11px;margin-bottom:0px;"></div>
+	
+	<div>
+	    
+        <ul class="nav nav-tabs">
+            <li><a href="#tab-1" role="tab-1" data-toggle="tab-1"><a href="http://192.168.168.39:5000/"><strong>排序</strong></a></a></li>
+            <li><a href="#tab-2" role="tab-2" data-toggle="tab-2"><a href="http://192.168.168.39:5000/2"><strong>地图</strong></a></a></li>
+            <li class="active"><a href="#tab-3" role="tab-3" data-toggle="tab-3"><a href="http://192.168.168.39:5000/1"><strong>评分</strong></a></a></li>
+        </ul>
+        
+    </div>
+	<h4 class="text" style="margin-top:0px;margin-bottom:11px;"><strong>站点信息 </strong></h4>
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+    </ul>
+        <div class="container" style="padding-right:0px;padding-left:0px;">
+            <div class="row" style="margin-left:0px;margin-right:0px;">
+                <!-- <div class="col-md-12" style="padding-left:0px;padding-right:0px;height:0px;">
+				    
+                    <h3 class="text-center" style="margin-top:11px;margin-bottom:0px;"><strong>站点评分</strong></h3>
+                </div>
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="intro">
+                        <p class="text-center"> </p>
+                    </div>
+                </div> -->
+				<script>
+					function qdzh(kk){
+						document.getElementById("dd").value=kk;
+						document.getElementById("bm").value=kk;
+						}
+				</script>
+				<script>
+					function qddd(kk){
+						document.getElementById("bm").value=kk;
+						document.getElementById("zh").value=kk;
+						}
+				</script>
+                <div class="col-md-12" style="background-color:#a2a3c2;height:83px;width:359px;padding-left:0px;padding-right:0px;"><label style="width:33px;margin-top:7px;">站号</label><select id="zh" name="zhn" onchange="qdzh(this.value)" style="width:65px;height:20px;margin-right:2px;font-size:10px;"><optgroup label="选择站号"><option value="100" selected="">
+							{%for i in range(ww2|length-2)%}
+							    <option value="{{i+1}}">{{ww2[i][1]}}</option>
+							{%endfor%}
+							</optgroup></select><label style="width:33px;">部门</label><select id="bm" name="bmn" disabled style="width:90px;font-size:10px;height:20px;padding-right:0px;"><optgroup label="选择部门"><option value="100" selected="">
+							{%for i in range(ww2|length-2)%}
+							    <option value="{{i+1}}">{{ww2[i][2]}}</option>
+							{%endfor%}
+							</optgroup></select>
+                    <label
+                        style="width:33px;">地点</label><select id="dd" name="ddn" onchange="qddd(this.value)" style="width:95px;font-size:10px;height:20px;"><optgroup label="选择地点"><option value="100" selected="">
+						{%for i in range(ww2|length-2)%}
+							<option value="{{i+1}}">{{ww2[i][3]}}</option>
+						{%endfor%}
+						</optgroup></select>
+                        <script>
+							function qdzw(kk){
+								document.getElementById("zw").value=kk;
+								}
+						</script>
+						<script>
+							function qdxm(kk){
+								document.getElementById("xm").value=kk;
+								}
+						</script>
+						<label
+                            style="width:32px;margin-left:1px;">姓名</label><select id="xm" name="xmn" onchange="qdzw(this.value)" style="width:135px;margin-right:0px;font-size:10px;height:20px;"><optgroup label="选择姓名">
+                            <option value="100" selected="">
+							{%for i in range(renyuanxiang|length-1)%}
+							    <option value="{{i+1}}">{{renyuanxiang[i]}}</option>
+							{%endfor%}
+							</optgroup></select>
+                            <label
+                                style="width:32px;margin-left:1px;">职务</label><select id="zw" name="zwn" onchange="qdxm(this.value)" style="width:135px;margin-right:0px;font-size:10px;height:20px;"><optgroup label="选择职务">
+								<option value="100" selected="">
+							    {%for i in range(renyuanxiang|length-1)%}
+							        <option value="{{i+1}}">{{renyuanzidian[renyuanxiang[i]]}}</option>
+							    {%endfor%}
+								</optgroup></select>
+                                <label
+                                    style="width:38px;margin-left:0px;">日期</label><input type="date" id="rq" name="rqn" style="width:90px;margin-right:0px;height:20px;padding-left:0px;font-size:10px;"><label style="width:31px;margin-left:0px;margin-bottom:7px;">开始</label><input type="time" id="ks" name="ksn" style="width:80px;height:20px;font-size:10px;">
+                                    <label
+                                        style="width:33px;margin-left:0px;">结束</label><input type="time" id="js" name="jsn" style="width:80px;margin-right:0px;height:20px;font-size:10px;"></div>
+            </div>
+        </div>
+    </div>
+    <h5 style="margin-bottom:7px;margin-top:7px;">评分项目</h5>
+	{%for i in range(1,6)%}
+    <div class="container" style="background-color:#678cd6;height:120px;width:359px;margin-left:0px;padding-left:0px;margin-right:0px;padding-right:10px;padding-top:0px;"><input type="checkbox" id='qy{{i}}' name='qyn{{i}}'style="margin-left:15px;"><label style="width:40px;margin:7px;margin-right:0px;margin-left:13px;margin-top:0px;margin-bottom:0px;">序号{{i}}</label><label style="width:40px;margin:7px;margin-right:0px;margin-left:12px;margin-top:0px;margin-bottom:0px;">类别</label>
+	    <script>
+			function myFuction{{i}}(kk){
+				var x={{wentizidian|tojson}};
+				var wt=x[kk][0].split(',');
+				
+				var zg=x[kk][1].split(',');
+				var xin1="<datalist id=\"itemlist{{i}}1\">";
+                var xin2="<datalist id=\"itemlist{{i}}2\">";			
+				for(m=0;m<wt.length;m++){
+				    
+					xin1+=("<option value=\""+wt[m]+"\">");
+					
+				    }
+				xin1+="</datalist>";
+				console.log(xin1);
+				document.getElementById("itemlist{{i}}1").innerHTML=xin1;	
+				for(m=0;m<zg.length;m++){
+				    xin2+=("<option value="+zg[m]+">");
+					
+					}
+				xin2+="</datalist>";
+				document.getElementById("itemlist{{i}}2").innerHTML=xin2;
+				}
+		</script>
+        <select
+            id='lb{{i}}' name='lbn{{i}}' onchange="myFuction{{i}}(this.value)" style="width:71px;padding-right:0px;height:20px;font-size:10px;">
+            <optgroup label="选择类别">
+			    {%for j in range(wentixiang|length)%}
+				<option value="{{j+1}}">{{wentixiang[j]}}</option>
+				{%endfor%}
+                <!-- <option value="1">规章制度</option>
+                <option value="2">安全管理</option>
+                <option value="3">劳动安全</option>
+                <option value="4">职工两纪</option>
+                <option value="5">设备质量</option>
+                <option value="6">路外环境</option>
+                <option value="7">干部履职</option>
+                <option value="8">人员素质</option> -->
+				<option value="100" selected=""></option>
+            </optgroup>
+			
+            </select><label style="width:35px;margin:7px;margin-right:3px;margin-left:12px;margin-bottom:0px;margin-top:0px;">性质</label><select id='xz{{i}}' name='xzn{{i}}' style="width:71px;font-size:10px;height:20px;"><optgroup label="选择性质"><option value="1" selected="">一般</option><option value="2">严重</option><option value="3">典型</option></optgroup></select>
+            <label style="width:30px;margin:7px;margin-right:5px;margin-left:0px;margin-top:0px;margin-bottom:0px;">问题</label>
+				<input type="text" list="itemlist{{i}}1" id='wt{{i}}' name='wtn{{i}}' style="width:309px;margin-left:0px;font-size:10px;padding-top:0px;padding-bottom:0px;height:20px;">
+				<datalist id="itemlist{{i}}1">
+				    <option value="常见问题1">
+					<option value="常见问题2">
+					<option value="常见问题3">
+				</datalist>
+				<label style="width:34px;margin:7px;margin-right:0px;margin-left:0px;margin-top:0px;margin-bottom:0px;">整改</label>
+                <input type="text" list="itemlist{{i}}2" id='zg{{i}}' name='zgn{{i}}' style="width:309px;margin-left:0px;font-size:10px;padding-top:0px;padding-bottom:0px;height:20px;">
+				<datalist id="itemlist{{i}}2">
+				    <option value="立即整改，加强">
+					<option value="立即整改，按要求">
+					<option value="立即整改">
+				</datalist>
+				<label style="width:90px;margin:7px;margin-right:0px;margin-left:0px;margin-top:0px;margin-bottom:0px;">图片上传</label>
+				<input type="file" name="picn{{i}}" id="pic{{i}}" accept="image/*"multiple style="width:350px;font-size:10px;padding-top:0px;padding-bottom:0px;height:20px;">
+				
+				
+				</div>
+    <div style="height:8px;"></div>
+	{%endfor%}
+    <button class="btn btn-default" type="submit" name="up1" value="up1" style="margin-left:151px;height:27px;padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;width:39px;">提交</button>
+    
+    
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+    <script src="static/js/Simple-Slider1.js"></script>
+</form>
+
+	</body>
+
+</html>
